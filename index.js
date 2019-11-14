@@ -2,9 +2,13 @@ const express = require('express');
 const app = express();
 const morgan = require('morgan');
 const { db } = require('./models');
+const wikiRouter = require('./routes/wiki');
+const userRouter = require('./routes/user')
 
 console.log('Beginning of file');
 
+app.use('/wiki', wikiRouter)
+// app.use('/user', userRouter)
 app.use(express.urlencoded({ extended: false }));
 app.use(morgan('dev'));
 app.use(express.static(__dirname + '/public'));
@@ -13,7 +17,7 @@ db.authenticate().then(() => {
 });
 
 app.get('/', (req, res) => {
-  res.send(`<h1>You're going to die up there.</h1>`);
+  res.redirect(`/wiki/`);
 });
 
 const init = async () => {

@@ -16,7 +16,7 @@ const Page = db.define('page', {
 });
 
 const User = db.define('user', {
-  name: { type: Sequelize.STRING },
+  name: { type: Sequelize.STRING, defaultValue: 'Linda Blaire' },
   email: { type: Sequelize.STRING },
 });
 
